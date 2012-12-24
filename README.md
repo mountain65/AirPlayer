@@ -12,13 +12,18 @@ It relies heavily on the async keyword and therefore needs either MS.NET 4.5 or 
 The code is completely Mono based and has no dependencies on iOS classes like NSNetService for dns-sd.
 It should work on Windows and .NET but was so far only tested with MonoDevelop on Max OSX.
 
-### Dependencies
-* Mono.ZeroConf library
-* Mono 3.0.2
+### Copyright
+There is no copyright. Use it as you like, change it, sell it, whatever. I enjoyed making it (so far) and that will do for me.
 
-I haven't found a good way yet too include the Mono.ZeroConf code. Since it is on [GitHub](https://github.com/mono/Mono.Zeroconf) 
+### Dependencies
+* [Mono.ZeroConf](http://github.com/mono/Mono.Zeroconf) library
+* Mono 3.0.2
+* [PlistCS](https://github.com/animetrics/PlistCS/blob/master/PlistCS/Src/Plist.cs)
+
+I haven't found a good way yet too include the Mono.ZeroConf code. Since it is on [GitHub] 
 you can get it there. I didn't perform a real good install (that will set the config file that I include in the solution) but
 found a good example file on StackOverflow.
+The PlistCS code is just one class that I simply copy/pasted.
 
 ### First version
 This version detects the AppleTV and returns its IP-address. It allows you to send a photo or a series of photos and it 
