@@ -57,7 +57,7 @@ namespace AirPlay
 		/// <param name="fileName">File name.</param>
 		public async Task PlayPicture(string fileName)
 		{
-			using (var wc = CreateClient()) {
+			using (var wc = await CreateClient()) {
 				wc.Headers.Add ("X-Apple-AssetKey", "F92F9B91-954E-4D63-BB9A-EEC771ADE6E8");
 				wc.Headers.Add ("User-Agent", "AirPlay/160.4 (Photos)");
 				wc.Headers.Add ("X-Apple-Transition: Dissolve");
@@ -84,9 +84,8 @@ namespace AirPlay
 
 		public async Task<IEnumerable<string>> AvailableSlideshowFeatures()
 		{
-			using (var wc = CreateClient()) {
+			using (var wc = await CreateClient()) {
 				wc.Headers.Add ("User-Agent", "MediaControl/1.0");
-				wc.Headers.Add ("X-Apple-Session-ID", new Guid());
 
 				var xml = await wc.DownloadStringTaskAsync("/slideshow-features");
 
@@ -101,11 +100,11 @@ namespace AirPlay
 			}
 		}
 
-		private async WebClient CreateClient()
+		private async Task<WebClient> CreateClient()
 		{
 			var wc = new WebClient();
 			wc.Headers.Add ("Accept-Language", "English");
-			wc.Headers.Add ("X-Apple-Session-ID", new Guid());
+			wc.Headers.Add ("X-Apple-Session-ID", new Guid().ToString());
 			var url = string.Format("http://{0}:7000",  (await this.TV()).IPAddress);
 			wc.BaseAddress = url;
 
