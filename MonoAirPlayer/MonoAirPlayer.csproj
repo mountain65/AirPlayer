@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B1D56158-77CB-44AA-972A-F13E95C4802C}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>AirPlayTest</RootNamespace>
-    <AssemblyName>AirPlayTest</AssemblyName>
+    <RootNamespace>AirPlayer</RootNamespace>
+    <AssemblyName>MonoAirPlayer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

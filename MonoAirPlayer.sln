@@ -27,6 +27,6 @@ Global
 		{B1D56158-77CB-44AA-972A-F13E95C4802C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\..\Mono.Zeroconf\src\Mono.Zeroconf\Mono.Zeroconf.csproj
+		StartupItem = MonoAirPlayer\MonoAirPlayer.csproj
 	EndGlobalSection
 EndGlobal

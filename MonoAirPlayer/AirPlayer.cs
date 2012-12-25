@@ -93,10 +93,11 @@ namespace AirPlay
 				var pl = (Dictionary<string,object>)PList.readPlistSource(xml);
 
 				// That item holds a list of objects, which are actually dictionaries
-				var themes = pl["themes"] as List<Dictionary<string,object>>;
+//				var themes = pl["themes"] as List<Dictionary<string,object>>;
+				var themes = pl["themes"] as List<object>;
 
 				// Each dictionary has 2 entries: one with key "key" and one with key "name"
-				return themes.Select(t => t["name"].ToString());
+				return themes.Select(t => (t as Dictionary<string,object>)["name"].ToString()).ToList();
 			}
 		}
 
