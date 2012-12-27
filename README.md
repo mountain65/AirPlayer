@@ -25,6 +25,18 @@ you can get it there. I didn't perform a real good install (that will set the co
 found a good example file on StackOverflow.
 The PlistCS code is just one class that I simply copy/pasted.
 
+### The future
+I have no intention to make a full implementation of the protocol. Especially the audio parts look pretty hard to do. I do want 
+the ability to play standard slideshows and video (where the AppleTV downloads an MP4 from my computer). Mirroring would be 
+nice but requires streaming of video and I have no idea how to do that.
+
+### Second version
+I'm working on the slideshows. This could be done by sending photo-by-photo and specifying a transition, but it can also be done 
+by starting a slideshow session whereby the AppleTV requests a photo from the client. That's done using reverse-http and means 
+your client has to function as a http-server. It would be nice if I could implement reverse-http with SignalR, but I haven't 
+found that out yet.
+
+
 ### First version
 This version detects the AppleTV and returns its IP-address. It allows you to send a photo or a series of photos and it 
 can query the AppleTV for all the available transitions between photos.
