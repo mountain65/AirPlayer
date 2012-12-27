@@ -101,6 +101,32 @@ namespace AirPlay
 			}
 		}
 
+		public async Task StartSlideshow(string transitions)
+		{
+			using (var wc = await CreateClient()) {
+				wc.Headers.Add ("User-Agent", "MediaControl/1.0");
+				wc.Headers.Add("Content-Type", "text/x-apple-plist+xml");
+				wc.Headers.Add("Content-Length", "0");
+
+				var plistData = new Dictionary<string,object>
+				{
+					{"settings",
+						new Dictionary<string,object>
+						{
+							{ "slideDuration", 1 },
+							{ "theme", transitions },
+						}
+					},
+					{ "state", "playing"}
+				};
+
+				var pl = PList.writeXml(plistData);
+				var result = await wc.UploadStringTaskAsync("/slideshows/1", "PUT", pl);
+				Console.WriteLine ("TV returned: {0}", result);
+			}
+		}
+
+
 		private async Task<WebClient> CreateClient()
 		{
 			var wc = new WebClient();

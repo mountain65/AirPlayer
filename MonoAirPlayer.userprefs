@@ -1,15 +1,30 @@
-﻿<Properties>
+﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MonoAirPlayer/Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MonoAirPlayer/AirPlayer.cs">
     <Files>
-      <File FileName="MonoAirPlayer/AirPlayer.cs" Line="102" Column="3" />
+      <File FileName="MonoAirPlayer/AirPlayer.cs" Line="100" Column="1" />
       <File FileName="MonoAirPlayer/PList.cs" Line="1" Column="1" />
       <File FileName="MonoAirPlayer/Mono.Zeroconf.Providers.Bonjour.dll.config" Line="1" Column="1" />
-      <File FileName="MonoAirPlayer/Main.cs" Line="37" Column="30" />
+      <File FileName="MonoAirPlayer/Main.cs" Line="56" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Mono.Zeroconf.Providers.Bonjour" expanded="True">
+            <Node name="Mono.Zeroconf.Providers.Bonjour" expanded="True" />
+          </Node>
+          <Node name="MonoAirPlayer" expanded="True">
+            <Node name="AirPlayer.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/mountain/Documents/Projects/Mono/Mac/AirPlayer/MonoAirPlayer/Main.cs" line="56" />
+      <Breakpoint file="/Users/mountain/Documents/Projects/Mono/Mac/AirPlayer/MonoAirPlayer/AirPlayer.cs" line="97" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -43,6 +43,8 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AirPlayer.cs" />
     <Compile Include="PList.cs" />
+    <Compile Include="Listener.cs" />
+    <Compile Include="Client.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
