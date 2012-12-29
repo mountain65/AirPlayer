@@ -43,16 +43,6 @@ namespace AirPlay
 		
 		public static void Main (string [] args)
 		{
-			if (args.Length < 2)
-				Help ();
-
-			int delay = -1;
-			if (!Int32.TryParse (args [0], out delay))
-				Help ("ERROR: Delay invalid");
-			
-			if (!Directory.Exists (args [1]))
-				Help ("ERROR: Directory does not exist.");
-			
 			var player = new AirPlayer();
 
 			Console.WriteLine ("Available transitions:");
@@ -60,11 +50,9 @@ namespace AirPlay
 			foreach (var f in features)
 				Console.WriteLine ("\t{0}", f);
 				
-
-			var files = FindJpeg (args [1]);
-			
-			Console.WriteLine ("Sending {0} files to TV", files.Count());
-				player.PlayPictures(files, delay).Wait();
+			var slideShowSession = player.StartSlideshow("Classic").Result;
+//			player.StopSlideshow(slideShowSession).Wait();
+			player.CreateReverseConnection(slideShowSession);
 		}
 	}
 }

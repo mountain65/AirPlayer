@@ -1,22 +1,31 @@
 using System;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Mono.Zeroconf;
 using System.IO;
+using System.Linq;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 
 namespace AirPlay
 {
 	public class AirPlayer
 	{
-		private AppleTv tv = null;
-		async public Task<AppleTv> TV()  
-		{ 
-			if (tv == null)
-				tv = await FindAppleTv();
+		public AirPlayer ()
+		{
+			var nic = NetworkInterface.GetAllNetworkInterfaces().Where(ni => ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet && ni.Name == "en1").FirstOrDefault();
+			if (nic == null)
+				throw new ArgumentNullException("No NIC found");
 
-			return tv;
+			_macAddress = "0x" + nic.GetPhysicalAddress().ToString();
+		}
+
+		public async Task<AppleTv> TV()  
+		{ 
+			if (_tv == null)
+				_tv = await FindAppleTv();
+
+			return _tv;
 		}
 
 		public Task<AppleTv> FindAppleTv()
@@ -101,12 +110,12 @@ namespace AirPlay
 			}
 		}
 
-		public async Task StartSlideshow(string transitions)
+		public async Task<Guid> StartSlideshow(string transitions)
 		{
-			using (var wc = await CreateClient()) {
+			var guid = new Guid();
+			using (var wc = await CreateClient(guid)) {
 				wc.Headers.Add ("User-Agent", "MediaControl/1.0");
 				wc.Headers.Add("Content-Type", "text/x-apple-plist+xml");
-				wc.Headers.Add("Content-Length", "0");
 
 				var plistData = new Dictionary<string,object>
 				{
@@ -123,20 +132,76 @@ namespace AirPlay
 				var pl = PList.writeXml(plistData);
 				var result = await wc.UploadStringTaskAsync("/slideshows/1", "PUT", pl);
 				Console.WriteLine ("TV returned: {0}", result);
+
+		//		var httpServer = new Tedd.Demo.HttpServer.Server.Listener(7000)
 			}
+			return guid;
 		}
 
+		public async Task StopSlideshow(Guid sessionId)
+		{
+			using (var wc = await CreateClient(sessionId)) {
+				wc.Headers.Add ("User-Agent", "MediaControl/1.0");
+				
+				var result = await wc.UploadStringTaskAsync("/stop", "POST");
+				Console.WriteLine ("TV returned: {0}", result);
+			}
+		}
+		
+		public void CreateReverseConnection(Guid sessionId)
+		{
+			connection.Start().ContinueWith(task => 
+			                                {
+				if(task.IsFaulted) 
+				{
+					Console.WriteLine("Failed to start: {0}", task.Exception.GetBaseException());
+				}
+				else 
+				{
+					Console.WriteLine("Success! Connected with client connection id {0}", connection.ConnectionId);
+					// Do more stuff here
+				}
+			});
 
+//			using (var wc = CreateClient(sessionId).Result) {
+//				wc.Headers.Add ("User-Agent", "MediaControl/1.0");
+//				wc.Headers.Add ("Upgrade", "PTTH/1.0");
+//				wc.Headers.Add ("Connection", "Upgrade");
+//				wc.Headers.Add ("X-Apple-Purpose", "Event");
+//
+////				var httpServer = new Tedd.Demo.HttpServer.Server.Listener(7002);
+//
+//				try {
+//					var result = wc.UploadString("/reverse", "POST", "");
+//					Console.WriteLine ("TV returned: {0}", result);
+//				}
+//				catch (WebException we)
+//				{
+//					Console.WriteLine (we);
+//				}
+//				
+			}
+		}
+		
 		private async Task<WebClient> CreateClient()
+		{
+			return await CreateClient(new Guid());
+		}
+
+		private async Task<WebClient> CreateClient(Guid sessionId)
 		{
 			var wc = new WebClient();
 			wc.Headers.Add ("Accept-Language", "English");
-			wc.Headers.Add ("X-Apple-Session-ID", new Guid().ToString());
+			wc.Headers.Add ("X-Apple-Session-ID", sessionId.ToString ());
+			wc.Headers.Add ("X-Apple-Device-ID", _macAddress);
 			var url = string.Format("http://{0}:7000",  (await this.TV()).IPAddress);
 			wc.BaseAddress = url;
 
 			return wc;
 		}
+
+		private string _macAddress;
+		private AppleTv _tv = null;
 	}
 
 	public class AppleTv

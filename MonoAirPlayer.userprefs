@@ -2,17 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="MonoAirPlayer/AirPlayer.cs">
     <Files>
-      <File FileName="MonoAirPlayer/AirPlayer.cs" Line="100" Column="1" />
+      <File FileName="MonoAirPlayer/AirPlayer.cs" Line="151" Column="11" />
       <File FileName="MonoAirPlayer/PList.cs" Line="1" Column="1" />
-      <File FileName="MonoAirPlayer/Mono.Zeroconf.Providers.Bonjour.dll.config" Line="1" Column="1" />
-      <File FileName="MonoAirPlayer/Main.cs" Line="56" Column="1" />
+      <File FileName="MonoAirPlayer/Main.cs" Line="55" Column="53" />
+      <File FileName="MonoAirPlayer/Client.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Mono.Zeroconf.Providers.Bonjour" expanded="True">
-            <Node name="Mono.Zeroconf.Providers.Bonjour" expanded="True" />
-          </Node>
           <Node name="MonoAirPlayer" expanded="True">
             <Node name="AirPlayer.cs" selected="True" />
           </Node>
@@ -22,8 +19,10 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/mountain/Documents/Projects/Mono/Mac/AirPlayer/MonoAirPlayer/Main.cs" line="56" />
-      <Breakpoint file="/Users/mountain/Documents/Projects/Mono/Mac/AirPlayer/MonoAirPlayer/AirPlayer.cs" line="97" />
+      <Breakpoint file="/Users/mountain/Documents/Projects/Mono/Mac/AirPlayer/MonoAirPlayer/Listener.cs" line="36" />
+      <Breakpoint file="/Users/mountain/Documents/Projects/Mono/Mac/AirPlayer/MonoAirPlayer/AirPlayer.cs" line="143" />
+      <Breakpoint file="/Users/mountain/Documents/Projects/Mono/Mac/AirPlayer/MonoAirPlayer/AirPlayer.cs" line="147" />
+      <Breakpoint file="/Users/mountain/Documents/Projects/Mono/Mac/AirPlayer/MonoAirPlayer/AirPlayer.cs" line="180" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
