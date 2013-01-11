@@ -30,7 +30,12 @@ I have no intention to make a full implementation of the protocol. Especially th
 the ability to play standard slideshows and video (where the AppleTV downloads an MP4 from my computer). Mirroring would be 
 nice but requires streaming of video and I have no idea how to do that.
 
+### Third version
+Right now I'm working on sending an MP4 using Progressive Download. I have some progress, but am looking for a valuable http-server 
+to embed in my code. Currently trying [Griffin.WebServer](https://github.com/jgauffin/griffin.webserver).
+
 ### Second version
+EPIC FAIL. AppleTV keeps returng "400 BAD REQUEST".
 I'm working on the slideshows. This could be done by sending photo-by-photo and specifying a transition, but it can also be done 
 by starting a slideshow session whereby the AppleTV requests a photo from the client. That's done using reverse-http and means 
 your client has to function as a http-server. It would be nice if I could implement reverse-http with SignalR, but I haven't 
